@@ -42,5 +42,22 @@ class NewPostSearch extends Notification implements ShouldQueue
         $this->count = $count;
     }
 
-    // your code to make it happen
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return ['database'];
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            $this->subject,
+            $this->posts
+        ];
+    }
 }

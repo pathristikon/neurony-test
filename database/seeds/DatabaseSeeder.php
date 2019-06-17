@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->truncate();
+        DB::table('posts')->truncate();
 
+        factory(App\User::class, 3)->create();
+        factory(App\Post::class, 50)->create();
     }
 }

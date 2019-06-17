@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\EloquentPostSearchRepository;
+use App\Contracts\SearchableContract;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     /**
      * @param Request $request
-     * @param EloquentPostSearchRepository $repository
+     * @param SearchableContract $repository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function home(Request $request, EloquentPostSearchRepository $repository)
+    public function home(Request $request, SearchableContract $repository)
     {
         $query = $repository->search($request->get('keyword'));
 
