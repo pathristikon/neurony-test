@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use App\Notifications\NewPostSearchChannel;
 
 class NewPostSearch extends Notification implements ShouldQueue
 {
@@ -50,7 +51,7 @@ class NewPostSearch extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return [NewPostSearchChannel::class];
     }
 
     public function toDatabase($notifiable)

@@ -116,19 +116,18 @@ class ElasticsearchPostSearchRepository implements SearchableContract
      */
     public function fetch() : Collection
     {
-        if(isset($this->query))
-        {
-            $this->sNewPostSearchNotifications($this->query);
-            return $this->query;
-        }
-
         $posts =  $this->searchEs->createQueryElastic([
             'query' => [
                 'match_all' => (object)[],
             ]
         ]);
 
-        $this->sNewPostSearchNotifications($posts);
+        $this->sNewPostSearchNotifications($this->query ?: $posts);
+
+        if(isset($this->query))
+        {
+            return $this->query;
+        }
 
         return $posts;
     }
